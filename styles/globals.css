@@ -12,15 +12,27 @@ a:visited {
   color: #2563eb;
   text-decoration: none;
 }
+a:focus {
+  outline: none
+}
 
 html {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
  "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+/* 
+body {
+} */
 
 body {
-  background-color: #f9fafb;
-  color: #4b5563;
+  /* background-color: #f9fafb; */
+  /* color: #4b5563; */
+  background: #fff;
+  color: #272727;
+  margin: 0;
+  overflow-x: hidden;
+  font-family: Open Sans, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI,
+  Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -172,20 +184,4 @@ main {
 
 .blog_post_card__description {
   line-height: 1.7;
-}
-/*# sourceMappingURL=globals.css.map */
-
-
-
-
-
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-  body {
-    @apply bg-[#06202A] text-gray-300
-  }
 }

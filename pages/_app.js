@@ -1,10 +1,15 @@
 import Link from 'next/link'
+import HeadMetadata from '../components/HeadMetadata'
 
 import '../styles/globals.css'
+
+// pages
+import '../styles/pages/homepage.css'
 
 export default function App({ Component, pageProps }) {
   return (
     <>
+    <HeadMetadata title='Cent Blog | Home' metaDescription="Cent Blog" />
       <header>
         <div className="logo"><h1><strong>LOGO</strong></h1></div>
 

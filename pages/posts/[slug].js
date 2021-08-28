@@ -10,32 +10,36 @@ export default function Post({ post }) {
   })
 
   return (
-    <div className="post">
-      <h1>{post?.title}</h1>
+    <main className="parent">
+      <div className="left"></div>
 
-      <time dateTime={post?.createdAt}>{prettyDate}</time>
+      <div className="middle post">
+        <h1>{post?.title}</h1>
 
-      {post?.author && <>
-        <div style={{ marginTop: 15 }}><strong>Authors:</strong></div>
+        <time dateTime={post?.createdAt}>{prettyDate}</time>
 
-        {post?.author?.map((author, index) => {
-          return (
-            <div key={index}>
+        {post?.author && <>
+          <div style={{ marginTop: 15 }}><strong>Authors:</strong></div>
 
-              <Image alt={author?.name} src={author?.profilePictureUrl} height="40" width="40" />
+          {post?.author?.map((author, index) => {
+            return (
+              <div key={index}>
 
-              <Link href={author?.permalink}>
-                <a style={{ marginLeft: 10 }}>
-                  {author?.name}
-                </a>
-              </Link>
-            </div>
-          )
-        })}
-      </>}
+                <Image alt={author?.name} src={author?.profilePictureUrl} height="40" width="40" />
 
-      <div dangerouslySetInnerHTML={{ __html: post?.body }} />
-    </div>
+                <Link href={author?.permalink}>
+                  <a style={{ marginLeft: 10 }}>
+                    {author?.name}
+                  </a>
+                </Link>
+              </div>
+            )
+          })}
+        </>}
+
+        <div dangerouslySetInnerHTML={{ __html: post?.body }} />
+      </div>
+    </main>
   )
 }
 

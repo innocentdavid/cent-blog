@@ -1,0 +1,39 @@
+@media (min-width: 50rem) {
+  h3 {
+    font-size: 1.5rem;
+  }
+}
+
+
+.homepage-container {
+  min-height: calc(100vh - (85px + 100px));
+  margin-top: 80px;
+  margin-bottom: 40px;
+}
+
+.homepage-introduction h1 {
+  font-size: 34px;
+  margin-bottom: 15px;
+}
+
+.homepage-introduction p {
+  font-size: 18px;
+  line-height: 36px;
+}
+
+
+@media only screen and (max-width: 700px) and (min-width: 0px) {
+  .homepage-container {
+    margin-top: 100px;
+  }
+
+  .homepage-introduction h1 {
+    font-size: 26px;
+    margin-bottom: 15px;
+  }
+
+  .homepage-introduction p {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
