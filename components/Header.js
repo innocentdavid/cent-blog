@@ -12,7 +12,7 @@ function Header() {
             <div className="flex flex-grow justify-evenly max-w-2xl">
                 <HeaderItem title="HOME" Icon={HomeIcon} location="/" />
                 <HeaderItem title="HOME" Icon={LightningBoltIcon} location="/" />
-                <HeaderItem title="HOME" Icon={  BadgeCheckIcon} location="/" />
+                <HeaderItem title="HOME" Icon={BadgeCheckIcon} location="/" />
                 <HeaderItem title="HOME" Icon={CollectionIcon} location="/" />
                 <HeaderItem title="HOME" Icon={SearchIcon} location="/" />
                 <HeaderItem title="HOME" Icon={UserIcon} location="/" />

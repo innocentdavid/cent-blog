@@ -3,24 +3,41 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3005",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.1",
+    "axios": "^0.21.1",
+    "dashify": "^2.0.0",
+    "firebase": "^8.0.2",
+    "firebase-admin": "^9.11.1",
+    "firebase-tools": "^9.16.6",
     "gray-matter": "^4.0.3",
+    "moment": "^2.29.1",
+    "multiparty": "^4.2.2",
+    "net": "^1.0.2",
     "next": "^10.2.3",
+    "next-connect": "^0.10.2",
     "react": "17.0.2",
+    "react-confirm-alert": "^2.7.0",
     "react-dom": "17.0.2",
     "react-flip-move": "^3.0.4",
     "remark": "^14.0.1",
     "remark-html": "^14.0.0",
-    "tailwind-scrollbar-hide": "^1.0.3"
+    "tailwind-scrollbar-hide": "^1.0.3",
+    "tls": "^0.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",
     "postcss": "^8.3.0",
     "tailwindcss": "^2.1.4"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "child_process": false,
+    "os": false
   }
 }

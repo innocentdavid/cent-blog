@@ -1,43 +1,49 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { getAllAuthors, getAllPosts } from '../../lib/api'
+import { db } from '../../utils/fire-config/firebase'
 
 export default function Authors({ authors }) {
+  // console.log(authors)
+
   return (
-    <div className="authors">
-      <h1>Authors</h1>
+    <div className="parent">
+      <div className="left"></div>
+      <div className="middle homepage-container" style={{ marginTop: 0 }}>
 
-      {authors?.map(author => {
-        // console.log(author)
+        <div className="authors">
+          <h1>Authors</h1>
 
-        return (
-          <div key={author.slug}>
-            <h2>
-              <Link href={author.permalink}>
-                <a>{author.name}</a>
-              </Link>
-            </h2>
+          {authors?.map(author => {
+            // console.log(author)
 
-            <Image alt={author.name} src={author.profilePictureUrl} height="40" width="40" />
+            return (
+              <div key={author.slug}>
+                <div className="author">
+                  {author?.photoURL && <Image alt={author.userName} src={author?.photoURL} height="60" width="60" className="authorPhoto" />}
+                  <Link href={`/authors/${author?.slug}`}><a className="blog_post_card__author_name">{author?.userName}</a></Link>
+                </div>
 
-            <p>{author.posts.length} post(s)</p>
+                {/* <p>{author.posts.length} post(s)</p> */}
 
-            <Link href={author.permalink}><a>Go to profile →</a></Link>
-          </div>
-        )
-      })}
+                <Link href={`/authors/${author.slug}`}><a>Go to profile →</a></Link>
+              </div>
+            )
+          })}
+        </div>
+
+
+      </div>
+      <div className="right"></div>
     </div>
   )
 }
 
+export const getServerSideProps = async () => {
+  const ref = await db.collection('users').limit(30).get();
+  const authors = ref.docs.map(author => ({ ...author.data(), authorId: author.id }));
 
-export function getStaticProps() {
   return {
-    props: {
-      authors: getAllAuthors().map(author => ({
-        ...author,
-        posts: getAllPosts().filter(post => post.author === author.slug),
-      })),
-    },
+    props: { authors },
+    // revalidate: 10
   }
 }

@@ -1,61 +1,32 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { getAllPosts, getAuthorBySlug } from '../../lib/api'
+import Posts from '../../components/Posts'
+import { db } from '../../utils/fire-config/firebase'
 
-export default function Posts({ posts }) {
-  return (
+const PostsPage = ({ tech, pets, programming }) => (
+  <div className="parent">
+    <div className="left"></div>
+    <div className="middle homepage-container">
 
-    <main className="parent">
-      <div className="left"></div>
+      <Posts tech={tech} pets={pets} programming={programming} />
 
+    </div>
+    <div className="right"></div>
+  </div>
+)
 
-      <div className="middle posts">
-        <h1>Posts</h1>
+export const getServerSideProps = async () => {
+  const techEntries = db.collection('posts').where('category', '==', 'tech').limit(3).get();
+  const tech = (await techEntries).docs.map(post => ({ ...post.data(), postId: post.id }));
 
-        {posts.map(post => {
-          const prettyDate = new Date(post.createdAt).toLocaleString('en-US', {
-            month: 'short',
-            day: '2-digit',
-            year: 'numeric',
-          })
+  const petsEntries = db.collection('posts').where('category', '==', 'pets').limit(3).get();
+  const pets = (await petsEntries).docs.map(post => ({ ...post.data(), postId: post.id }));
 
-          return (
-            <article key={post.slug}>
-              <h2>
-                <Link href={post.permalink}>
-                  <a>{post.title}</a>
-                </Link>
-              </h2>
+  const programmingEntries = db.collection('posts').where('category', '==', 'code').limit(3).get();
+  const programming = (await programmingEntries).docs.map(post => ({ ...post.data(), postId: post.id }));
 
-              <time dateTime={post.createdAt}>{prettyDate}</time>
-
-              <div>
-                <Image alt={post.author.name} src={post.author.profilePictureUrl} height="40" width="40" />
-
-                <span>{post.author.name}</span>
-              </div>
-
-              <p>{post.excerpt}</p>
-
-              <Link href={post.permalink}>
-                <a>Read more →</a>
-              </Link>
-            </article>
-          )
-        })}
-      </div>
-    </main>
-  )
-}
-
-
-export function getStaticProps() {
   return {
-    props: {
-      posts: getAllPosts().map(post => ({
-        ...post,
-        author: getAuthorBySlug(post.author),
-      })),
-    }
+    props: { tech, pets, programming },
+    // revalidate: 10
   }
 }
+
+export default PostsPage;
