@@ -41,9 +41,9 @@ export default function Author({ author, posts }) {
 
 export const getStaticPaths = async () => {
   const users = await db.collection("users").get();
-  const paths = users.docs.map(user => ({
+  const paths = users?.docs?.map(user => ({
     params: {
-      slug: user?.data().slug
+      slug: user?.data()?.slug
     }
   }));
 
