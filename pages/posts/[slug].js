@@ -75,6 +75,7 @@ function PostsPage({ entry }) {
   if (router.isFallback) {
     return (
       <div className="loading" style={{ display: 'grid' }}>
+        loading...
         <Image src="/loading.gif" alt="loading..." width="50px" height="50px" />
       </div>
     )
@@ -124,8 +125,8 @@ function PostsPage({ entry }) {
 
                   <div style={{ margin: 10 }}></div>
 
-                  {post?.body && <article dangerouslySetInnerHTML={{ __html: parseMd(post?.body) }} className="blog-post-body-content">
-                  </article>}
+                  {/* {post?.body && <article dangerouslySetInnerHTML={{ __html: parseMd(post?.body) }} className="blog-post-body-content">
+                  </article>} */}
                 </div>
               </div>
             </div>
@@ -145,21 +146,7 @@ function PostsPage({ entry }) {
 
 export default PostsPage
 
-
-export const getStaticPaths = async () => {
-  const entries = await db.collection("posts").get();
-  const paths = entries.docs.map(entry => ({
-    params: {
-      slug: entry?.data().slug
-    }
-  }));
-  return {
-    paths,
-    fallback: true
-  }
-}
-
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
   const { slug } = context.params;
   // console.log({ slug })
   const res = await db.collection("posts").doc(slug).get();
@@ -177,3 +164,36 @@ export const getStaticProps = async (context) => {
     }
   }
 }
+
+
+// export const getStaticPaths = async () => {
+//   const entries = await db.collection("posts").get();
+//   const paths = entries.docs.map(entry => ({
+//     params: {
+//       slug: entry?.data().slug
+//     }
+//   }));
+//   return {
+//     paths,
+//     fallback: true
+//   }
+// }
+
+// export const getStaticProps = async (context) => {
+//   const { slug } = context.params;
+//   // console.log({ slug })
+//   const res = await db.collection("posts").doc(slug).get();
+//   const entry = res?.data();
+
+//   if (res.exists) {
+//     return {
+//       props: {
+//         entry: entry
+//       }
+//     }
+//   } else {
+//     return {
+//       props: {}
+//     }
+//   }
+// }
