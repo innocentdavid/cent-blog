@@ -56,16 +56,22 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const { slug } = context.params;
   // console.log({ slug })
-  const userRes = await db.collection("users").doc(slug).get();
-  const user = userRes?.data();
-  const userPostsRes = await db.collection("posts").where('author.email', '==', user.email).get();
-  const posts = userPostsRes?.docs.map(post => ({ ...post.data(), postId: post.id }));
-
-  if (userRes.exists) {
-    return {
-      props: {
-        author: user,
-        posts
+  if(slug){
+    const userRes = await db.collection("users").doc(slug).get();
+    const user = userRes?.data();
+    const userPostsRes = await db.collection("posts").where('author.email', '==', user.email).get();
+    const posts = userPostsRes?.docs.map(post => ({ ...post.data(), postId: post.id }));
+  
+    if (userRes.exists) {
+      return {
+        props: {
+          author: user,
+          posts
+        }
+      }
+    } else {
+      return {
+        props: {}
       }
     }
   } else {
