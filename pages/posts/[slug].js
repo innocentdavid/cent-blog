@@ -9,8 +9,25 @@ import { deletePost, parseMd, openLoading } from '../../myFunctions'
 import { confirmAlert } from 'react-confirm-alert';
 import Post from '../../components/Post'
 
-function PostsPage({ entry }) {
+function PostsPage({ slug }) {
+  const [entry, setEntry] = useState([]);
+
+  useEffect(() => {
+    const fetch = async () => {
+      let ref = await db.collection('posts').doc(slug).get();
+      if (ref.exists) { setEntry(ref.data()) }
+    }
+    fetch();
+  }, []);
+
   const post = entry
+  
+  useEffect(() => {
+    // Prism.highlightAll()
+    // console.log(post)
+    // console.log(post)
+  }, [post]);
+  
   useEffect(() => {
     openLoading('close');
   }, []);
@@ -61,10 +78,6 @@ function PostsPage({ entry }) {
     });
   }
 
-  useEffect(() => {
-    // Prism.highlightAll()
-    // console.log(post)
-  }, [post]);
 
   const prettyDate = new Date(post?.createdAt).toLocaleString('en-US', {
     month: 'short',
@@ -80,90 +93,93 @@ function PostsPage({ entry }) {
       </div>
     )
   } else {
-    if (entry) {
-      return (<>
-        <HeadMetadata
-          title={entry ? entry?.title : "Blog Post | Coding Blog"}
-          metaDescription={entry ? entry?.excerpt : "Blog Post | Coding Blog"}
-        />
+    return (<>
+      <HeadMetadata
+        title={entry ? entry?.title : "Blog Post | Coding Blog"}
+        metaDescription={entry ? entry?.excerpt : "Blog Post | Coding Blog"}
+      />
 
-        <div className="parent">
-          <div className="left"></div>
-          <div className="middle homepage-container">
+      <div className="parent">
+        <div className="left"></div>
+        <div className="middle homepage-container">
 
-            <div className="layout-wrapper">
-              <div className="blog-post-container">
-                <div>
-                  {canEdit && <div className="modBtn">
-                    <Link href={`/admin/edit/${post?.slug}`}>
-                      <a><button style={{ marginRight: 10 }}>Edit</button></a>
-                    </Link>
-                    <button className="modBtn2" onClick={() => { onDelete(post?.slug) }}>Delete</button>
-                  </div>}<br />
+          <div className="layout-wrapper">
+            <div className="blog-post-container">
+              <div>
+                {canEdit && <div className="modBtn">
+                  <Link href={`/admin/edit/${post?.slug}`}>
+                    <a><button style={{ marginRight: 10 }}>Edit</button></a>
+                  </Link>
+                  <button className="modBtn2" onClick={() => { onDelete(post?.slug) }}>Delete</button>
+                </div>}<br />
 
-                  <div className="blog_post_card__title" >{post?.title}</div>
+                <div className="blog_post_card__title" >{post?.title}</div>
 
-                  <div style={{ margin: 10 }}></div>
+                <div style={{ margin: 10 }}></div>
 
-                  <hr style={{ margin: '20px 0', border: '1px solid #25c7eb' }} />
+                <hr style={{ margin: '20px 0', border: '1px solid #25c7eb' }} />
 
-                  <div className="blog-post-top-section">
-                    <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-                      <div className="blog-post-author" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <Image src={post?.author?.photoURL} alt={post?.author?.userName} width="100px" height="100px" className="authorPhoto" />
-                        <div>{post?.author?.userName && <b>{post?.author?.userName}</b>}</div>
-                      </div>
+                <div className="blog-post-top-section">
+                  <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+                    <div className="blog-post-author" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                      {post?.author?.photoURL && <Image src={post?.author?.photoURL} alt={post?.author?.userName} width="100px" height="100px" className="authorPhoto" />}
+                      <div>{post?.author?.userName && <b>{post?.author?.userName}</b>}</div>
+                    </div>
 
-                      <div>
-                        <div className="blog_post_card__date"><time dateTime={post.createdAt}>{prettyDate}</time></div>
-                        <div>S  H  A  R  E</div>
-                      </div>
+                    <div>
+                      <div className="blog_post_card__date"><time dateTime={post?.createdAt}>{prettyDate}</time></div>
+                      <div>S  H  A  R  E</div>
                     </div>
                   </div>
-
-                  <hr style={{ marginTop: 20, border: '1px solid #25c7eb' }} />
-
-                  <div style={{ margin: 10 }}></div>
-
-                  {/* {post?.body && <article dangerouslySetInnerHTML={{ __html: parseMd(post?.body) }} className="blog-post-body-content">
-                  </article>} */}
                 </div>
+
+                <hr style={{ marginTop: 20, border: '1px solid #25c7eb' }} />
+
+                <div style={{ margin: 10 }}></div>
+
+                {post?.body && <article dangerouslySetInnerHTML={{ __html: parseMd(post?.body) }} className="blog-post-body-content">
+                </article>}
               </div>
             </div>
-
-            <Footer />
           </div>
-          <div className="right"></div>
+
+          <Footer />
         </div>
-      </>);
-    } else {
-      return (
-        <div>not found</div>
-      )
-    }
+        <div className="right"></div>
+      </div>
+    </>)
+  }
+}
+
+
+PostsPage.getInitialProps = ({ query }) => {
+  return {
+    slug: query.slug,
   }
 }
 
 export default PostsPage
 
-export const getServerSideProps = async (context) => {
-  const { slug } = context.params;
-  // console.log({ slug })
-  const res = await db.collection("posts").doc(slug).get();
-  const entry = res?.data();
+// export const getServerSideProps = async (context) => {
+//   const { slug } = context.params;
+//   // console.log({ slug })
+//   if(slug){
+//     const res = await db.collection("posts").doc(slug).get();
+//     const entry = res?.data();
 
-  if (res.exists) {
-    return {
-      props: {
-        entry: entry
-      }
-    }
-  } else {
-    return {
-      props: {}
-    }
-  }
-}
+//     if (res.exists) {
+//       return {
+//         props: {
+//           entry: entry
+//         }
+//       }
+//     } else {
+//       return {
+//         props: {}
+//       }
+//     }
+//   }
+// }
 
 
 // export const getStaticPaths = async () => {
