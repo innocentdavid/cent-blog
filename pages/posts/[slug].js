@@ -42,7 +42,7 @@ function PostsPage({ slug }) {
       if (authUser) {
         setUser(authUser);
       } else {
-        router.push('/login')
+        // router.push('/login')
       }
     })
   }, []);
