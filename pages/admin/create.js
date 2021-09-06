@@ -69,7 +69,7 @@ const Post = () => {
   }
 
   return (<>
-    <HeadMetadata title={'Create Article'} />
+    <HeadMetadata title={'Cent Blog | Create article'} metaDescription="create article page" />
 
     <div style={{ padding: '0 10%' }}>
       {/* Post category */}

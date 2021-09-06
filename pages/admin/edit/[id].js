@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
 import dashify from 'dashify';
 import { db, auth } from '../../../utils/fire-config/firebase'
+import HeadMetadata from '../../../components/HeadMetadata';
 import { openLoading } from '../../../myFunctions';
 
 const EditEntry = () => {
@@ -18,7 +19,7 @@ const EditEntry = () => {
       }
     })
   }, []);
-  
+
   const [content, setContent] = useState(
     { title: '', body: '', excerpt: '', category: '', createdAt: '', author: [] })
 
@@ -55,12 +56,14 @@ const EditEntry = () => {
     openLoading('close');
   }
 
-  return (
-    <div style={{ padding: '0 10%'}}>
+  return (<>
+    <HeadMetadata title={`Edit - ${router.query.id}`} metaDescription={`Edit - ${router.query.id}`} />
+
+    <div style={{ padding: '0 10%' }}>
       {/* Blog title */}
-      <div style={{ margin: '10px 0'}}>
+      <div style={{ margin: '10px 0' }}>
         <label htmlFor="title">Blog title</label><br />
-        <div style={{ margin: '10px 0'}}></div>
+        <div style={{ margin: '10px 0' }}></div>
         <input
           className="form-control"
           style={{ width: '100%' }}
@@ -76,9 +79,9 @@ const EditEntry = () => {
       <br />
 
       {/* SEO Description */}
-      <div style={{ margin: '10px 0'}}>
+      <div style={{ margin: '10px 0' }}>
         <label htmlFor="title">SEO Description (at least 120 character)</label><br />
-        <div style={{ margin: '10px 0'}}></div>
+        <div style={{ margin: '10px 0' }}></div>
         <textarea
           className="form-control"
           style={{ width: '100%', height: 100 }}
@@ -94,9 +97,9 @@ const EditEntry = () => {
       <br />
 
       {/* Body */}
-      <div style={{ margin: '10px 0'}}>
+      <div style={{ margin: '10px 0' }}>
         <label htmlFor="body">Body</label><br />
-        <div style={{ margin: '10px 0'}}></div>
+        <div style={{ margin: '10px 0' }}></div>
         <textarea
           className="form-control"
           style={{ width: '100%', height: 500 }}
@@ -111,8 +114,8 @@ const EditEntry = () => {
       <br />
       <button className="btnSolid" onClick={onSubmit}>UPDATE</button>
 
-      
-      
+
+
       <br />
       <br />
       <br />
@@ -121,7 +124,7 @@ const EditEntry = () => {
       <br />
       <br />
     </div>
-  );
+    </>);
 };
 
-export default EditEntry;
+    export default EditEntry;

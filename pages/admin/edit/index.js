@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+
 import { confirmAlert } from 'react-confirm-alert'
 import { db } from '../../../utils/fire-config/firebase'
+import HeadMetadata from '../../../components/HeadMetadata';
 
 const List = () => {
   const [entries, setEntries] = useState([]);
@@ -36,6 +38,8 @@ const List = () => {
 
   return (
     <div>
+      <HeadMetadata title={'Cent Blog | Admin - All posts'} metaDescription="Admin - All posts" />
+
       <h1>Entries</h1>
       {entries.map(entry => (
         <div key={entry.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: 300 }}>

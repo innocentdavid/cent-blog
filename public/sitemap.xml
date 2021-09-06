@@ -1,78 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://www.example.com</loc>
+        <loc>https://cent-blog.vercel.app</loc>
         <changefreq>daily</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://www.example.com/about</loc>
+        <loc>https://cent-blog.vercel.app/about</loc>
         <changefreq>daily</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://www.example.com/contact</loc>
+        <loc>https://cent-blog.vercel.app/contact</loc>
         <changefreq>daily</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://www.example.com/blog</loc>
+        <loc>https://cent-blog.vercel.app/posts</loc>
         <changefreq>daily</changefreq>
         <priority>0.7</priority>
     </url>
+
+    <!-- <url>
+        <loc>https://cent-blog.vercel.app/tags/git</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.7</priority>
+    </url> -->
+    
     <url>
-        <loc>https://www.example.com/tags/git</loc>
+        <loc>https://cent-blog.vercel.app/posts/building-a-full-stack-application-with-next-js-and-firestore-db-and-host-on-versel</loc>
         <changefreq>daily</changefreq>
         <priority>0.7</priority>
     </url>
-    <url>
-        <loc>https://www.example.com/tags/nodejs</loc>
-        <changefreq>daily</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.example.com/tags/html</loc>
-        <changefreq>daily</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.example.com/tags/react</loc>
-        <changefreq>daily</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.example.com/tags/javascript</loc>
-        <changefreq>daily</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.example.com/tags/css</loc>
-        <changefreq>daily</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.example.com/blog/introduction-to-git-version-control-system</loc>
-        <changefreq>daily</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.example.com/blog/create-a-rest-api-with-node-js</loc>
-        <changefreq>daily</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.example.com/blog/how-to-put-spaces-between-text-in-html</loc>
-        <changefreq>daily</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.example.com/blog/how-to-create-a-website-with-next-js-and-react</loc>
-        <changefreq>daily</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.example.com/blog/how-to-use-the-css-calc-function</loc>
-        <changefreq>daily</changefreq>
-        <priority>0.7</priority>
-    </url>
+    
 </urlset>

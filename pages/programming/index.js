@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import HeadMetadata from '../../components/HeadMetadata'
 import { truncate } from '../../myFunctions'
 import { db } from '../../utils/fire-config/firebase'
 
@@ -7,6 +8,8 @@ export default function Posts({ posts }) {
   // console.log(posts)
   
   return (<>
+    <HeadMetadata title='Cent Blog | Programming updates' metaDescription="Get latest update on programming" />
+
     <main className="parent">
       <div className="left"></div>
 

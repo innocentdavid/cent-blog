@@ -2,6 +2,7 @@ import axios from 'axios';
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import HeadMetadata from '../../components/HeadMetadata'
 import { deletePost, openLoading } from '../../myFunctions';
 import { confirmAlert } from 'react-confirm-alert';
 import { db, auth } from '../../utils/fire-config/firebase'
@@ -66,7 +67,11 @@ function Admin() {
     });
   }
 
-  return (
+  return (<>
+  <HeadMetadata
+        title='Cent Blog | Admins'
+        metaDescription="Admin page"
+      />
     <div style={{ padding: "0 10%" }}>
       <h1>Welcome to the Admin page!</h1>
 
@@ -98,7 +103,7 @@ function Admin() {
       <br />
       <br />
     </div>
-  )
+  </>)
 }
 
 export default Admin

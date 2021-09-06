@@ -39,7 +39,9 @@ export default function App({ Component, pageProps }) {
       </div>
 
       <header>
-        <div className="logo"><h1><strong>LOGO</strong></h1></div>
+        <div className="logo">
+          <Image src="/images/Cent_Blog_Logo.png" alt="loading..." width="100%" height="100%" />
+        </div>
 
         <nav>
           <ul>
@@ -73,9 +75,9 @@ export default function App({ Component, pageProps }) {
         <div className="blogName">CENT-BLOG</div>
       </header>
 
-      <main>
+      <>
         <Component {...pageProps} />
-      </main>
+      </>
     </>
   )
 }

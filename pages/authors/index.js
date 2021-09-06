@@ -1,11 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import HeadMetadata from '../../components/HeadMetadata'
 import { db } from '../../utils/fire-config/firebase'
 
 export default function Authors({ authors }) {
   // console.log(authors)
 
-  return (
+  return (<>
+  <HeadMetadata title='Cent Blog | Meet our inspiring authors' metaDescription="Meet our inspiring authors" />
+
     <div className="parent">
       <div className="left"></div>
       <div className="middle homepage-container" style={{ marginTop: 0 }}>
@@ -35,7 +38,7 @@ export default function Authors({ authors }) {
       </div>
       <div className="right"></div>
     </div>
-  )
+  </>)
 }
 
 export const getServerSideProps = async () => {

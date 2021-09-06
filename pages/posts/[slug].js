@@ -123,12 +123,12 @@ function PostsPage({ slug }) {
                   <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
                     <div className="blog-post-author" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                       {post?.author?.photoURL && <Image src={post?.author?.photoURL} alt={post?.author?.userName} width="100px" height="100px" className="authorPhoto" />}
-                      <div>{post?.author?.userName && <b>{post?.author?.userName}</b>}</div>
+                      <Link href={`/author/${post?.author?.slug}`}><a style={{ color: '#005584', fontSize: '1.125rem', fontWeight: 900, fontFamily: 'Lato,Helvetica,Arial,sans-serif' }}>{post?.author?.userName && <b>{post?.author?.userName}</b>}</a></Link>
                     </div>
 
                     <div>
-                      <div className="blog_post_card__date"><time dateTime={post?.createdAt}>{prettyDate}</time></div>
-                      <div>S  H  A  R  E</div>
+                      <div className="blog_post_card__date">Published at - <time dateTime={post?.createdAt}>{prettyDate}</time></div>
+                      {/* <div>S  H  A  R  E</div> */}
                     </div>
                   </div>
                 </div>
