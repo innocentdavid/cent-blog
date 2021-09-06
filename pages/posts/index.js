@@ -1,7 +1,13 @@
 import Posts from '../../components/Posts'
 import { db } from '../../utils/fire-config/firebase'
+import HeadMetadata from '../../components/HeadMetadata'
 
-const PostsPage = ({ tech, pets, programming }) => (
+const PostsPage = ({ tech, pets, programming }) => (<>
+  <HeadMetadata
+    title="Get latest update around the world at your finger tip"
+    metaDescription="Get latest update around the world at your finger tip"
+  />
+
   <div className="parent">
     <div className="left"></div>
     <div className="middle homepage-container">
@@ -11,7 +17,7 @@ const PostsPage = ({ tech, pets, programming }) => (
     </div>
     <div className="right"></div>
   </div>
-)
+</>)
 
 export const getServerSideProps = async () => {
   const techEntries = db.collection('posts').where('category', '==', 'tech').limit(3).get();

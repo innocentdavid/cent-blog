@@ -126,7 +126,7 @@ a {
 }
 
 a:visited {
-  color: #01002b;
+  color: #01002e;
 }
 
 ul {
@@ -154,7 +154,7 @@ p {
 }
 
 header {
-  background: #25c7eb;
+  background: #002d4a;
   color: white;
   padding-top: 30px;
   padding-bottom: 30px;
@@ -178,6 +178,17 @@ nav {
 }
 
 nav ul {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 520px){
+  nav ul {
+    display: block;
+  }  
+}
+
+nav ul div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -187,11 +198,12 @@ nav ul {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  margin: 20px 0;
 }
 
 nav ul a {
   margin: 5px 10px;
-  border: 1px solid;
+  border: 1px solid #000e29;
   padding: 5px 10px;
 }
 
@@ -280,7 +292,7 @@ main {
 }
 
 .authorPhoto {
-  border: 1px solid #25c7eb !important;
+  border: 1px solid #002d4a !important;
   border-radius: 50%;
 }
 
@@ -322,7 +334,7 @@ main {
   cursor: pointer;
   margin: 5px 10px;
   border: 1px solid black;
-  color: black;
+  color: white;
   padding: 5px 10px;
 }
 

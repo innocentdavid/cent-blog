@@ -17,18 +17,18 @@ export default function App({ Component, pageProps }) {
 
   // window.addEventListener('click', windowClicked);
 
-  function windowClicked(event) {
-    if (!event.target.matches('.dropbtn')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-        }
-      }
-    }
-  }
+  // function windowClicked(event) {
+  //   if (!event.target.matches('.dropbtn')) {
+  //     var dropdowns = document.getElementsByClassName("dropdown-content");
+  //     var i;
+  //     for (i = 0; i < dropdowns.length; i++) {
+  //       var openDropdown = dropdowns[i];
+  //       if (openDropdown.classList.contains('show')) {
+  //         openDropdown.classList.remove('show');
+  //       }
+  //     }
+  //   }
+  // }
 
   return (
     <>
@@ -40,35 +40,51 @@ export default function App({ Component, pageProps }) {
 
       <header>
         <div className="logo">
-          <Image src="/images/Cent_Blog_Logo.png" alt="loading..." width="100%" height="100%" />
+          <Image src="/images/LOGO.png" alt="loading..." width="100%" height="100%" />
         </div>
 
         <nav>
           <ul>
-            <li>
-              <Link href="/">
-                <a><span style={{ color: 'black' }}>Home</span></a>
-              </Link>
-            </li>
+            <div>
+              <li>
+                <Link href="/">
+                  <a><span style={{ color: 'white' }}>Home</span></a>
+                </Link>
+              </li>
 
-            <li>
-              <span className="dropdown">
-                <span onClick={myFunction} className="dropbtn">Posts <svg xmlns="http://www.w3.org/2000/svg" style={{ width: 17, marginBottom: -5 }} className="h-2 w-2" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg></span>
-                <span id="myDropdown" className="dropdown-content">
-                  <Link href="/tech"><a onClick={myFunction}>Tech</a></Link>
-                  <Link href="/pets"><a onClick={myFunction}>Pets</a></Link>
-                  <Link href="/programming"><a onClick={myFunction}>Programming</a></Link>
+              <li>
+                <span className="dropdown">
+                  <span onClick={myFunction} className="dropbtn">Posts <svg xmlns="http://www.w3.org/2000/svg" style={{ width: 17, marginBottom: -5 }} className="h-2 w-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg></span>
+                  <span id="myDropdown" className="dropdown-content">
+                    <Link href="/tech"><a onClick={myFunction}>Tech</a></Link>
+                    <Link href="/pets"><a onClick={myFunction}>Pets</a></Link>
+                    <Link href="/programming"><a onClick={myFunction}>Programming</a></Link>
+                  </span>
                 </span>
-              </span>
-            </li>
+              </li>
 
-            <li>
-              <Link href="/authors">
-              <a><span style={{ color: 'black' }}>Authors</span></a>
-              </Link>
-            </li>
+              <li>
+                <Link href="/authors">
+                  <a><span style={{ color: 'white' }}>Authors</span></a>
+                </Link>
+              </li>
+            </div>
+
+            <div>
+              <li>
+                <Link href="/about">
+                  <a><span style={{ color: 'white' }}>About</span></a>
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/contact">
+                  <a><span style={{ color: 'white' }}>Contact us</span></a>
+                </Link>
+              </li>
+            </div>
           </ul>
         </nav>
 

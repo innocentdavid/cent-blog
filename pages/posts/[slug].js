@@ -95,8 +95,8 @@ function PostsPage({ slug }) {
   } else {
     return (<>
       <HeadMetadata
-        title={entry ? entry?.title : "Blog Post | Coding Blog"}
-        metaDescription={entry ? entry?.excerpt : "Blog Post | Coding Blog"}
+        title={entry ? entry?.title : "Get latest update around the world at your finger tip | Cent Blog"}
+        metaDescription={entry ? entry?.excerpt : "Get latest update around the world at your finger tip | Cent Blog"}
       />
 
       <div className="parent">
