@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Posts from '../components/Posts'
 import { db } from '../utils/fire-config/firebase'
 
@@ -9,9 +10,13 @@ export default function Home({ tech, pets, programming }) {
       <div className="middle homepage-container">
 
         <div className="homepage-introduction">
-          <h1>Hi, I&#39;m Paul Innocent. I help people learn software development. I love pets too and tech stuff</h1>
-          <p>I&#39;m a full stack software developer. I write about modern Node.js, JavaScript, and development.</p>
-        </div>
+          <h1>Hi, I&#39;m <Link href="/about"><a>Paul Innocent.</a></Link></h1>
+          <div>I help people understand software development. I love pets too and tech stuff</div>
+          <div style={{ margin: 7 }}></div>
+          <div>I&#39;m a full stack software developer. I write about modern Node.js, JavaScript, and development...</div>
+          <div style={{ margin: 4 }}></div>
+          <div className="read-more"><Link href="/about"><a>read more {'>'}</a></Link></div>
+        </div><br />
 
         <Posts tech={tech} pets={pets} programming={programming} />
 

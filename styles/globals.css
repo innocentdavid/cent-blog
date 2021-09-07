@@ -474,3 +474,18 @@ to be able to see the preview of the image. */
   border-radius: 50%;
   border: 16px rgb(80, 199, 235) solid;
 }
+
+.centImg {
+  display: grid;
+  place-items: center;
+  margin: 5px 0 !important;
+}
+
+@media (min-width: 600px){
+  .centImg img {
+    width: 400px;
+    display: grid;
+    place-items: center;
+    margin: 5px 0 !important;
+  }
+}

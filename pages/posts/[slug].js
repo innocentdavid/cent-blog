@@ -70,7 +70,6 @@ function PostsPage({ post }) {
   if (router.isFallback) {
     return (
       <div className="loading" style={{ display: 'grid' }}>
-        loading...
         <Image src="/loading.gif" alt="loading..." width="50px" height="50px" />
       </div>
     )
@@ -105,11 +104,14 @@ function PostsPage({ post }) {
                   <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
                     <div className="blog-post-author" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                       {post?.author?.photoURL && <Image src={post?.author?.photoURL} alt={post?.author?.userName} width="100px" height="100px" className="authorPhoto" />}
-                      <Link href={`/author/${post?.author?.slug}`}><a style={{ color: '#005584', fontSize: '1.125rem', fontWeight: 900, fontFamily: 'Lato,Helvetica,Arial,sans-serif' }}>{post?.author?.userName && <b>{post?.author?.userName}</b>}</a></Link>
+                      <Link href={`/authors/${post?.author?.slug}`}><a style={{ color: '#005584', fontSize: '1.125rem', fontWeight: 900, fontFamily: 'Lato,Helvetica,Arial,sans-serif' }}>{post?.author?.userName && <b>{post?.author?.userName}</b>}</a></Link>
                     </div>
 
                     <div>
-                      <div className="blog_post_card__date">Published at - <time dateTime={post?.createdAt}>{prettyDate}</time></div>
+                      <div className="blog_post_card__date">
+                        <div>Published at</div>
+                        <time dateTime={post?.createdAt}>{prettyDate}</time>
+                      </div>
                       {/* <div>S  H  A  R  E</div> */}
                     </div>
                   </div>
@@ -124,7 +126,7 @@ function PostsPage({ post }) {
               </div>
             </div>
           </div>
-}
+          }
           <Footer />
         </div>
         <div className="right"></div>
@@ -138,7 +140,7 @@ export default PostsPage
 export const getServerSideProps = async (context) => {
   const { slug } = context.params;
   // console.log({ slug })
-  if(slug){
+  if (slug) {
     const res = await db.collection("posts").doc(slug).get();
     const post = res?.data();
 

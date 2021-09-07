@@ -56,6 +56,7 @@ const Post = () => {
             console.log(error.message)
             openLoading('close');
           })
+          // router.push(`/${posts}/${slug}`);
         } else {
           alert('You have not selected any category');
           openLoading('close');
