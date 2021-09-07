@@ -7,27 +7,9 @@ import HeadMetadata from '../../components/HeadMetadata'
 import Footer from '../../components/Footer'
 import { deletePost, parseMd, openLoading } from '../../myFunctions'
 import { confirmAlert } from 'react-confirm-alert';
-import Post from '../../components/Post'
 
-function PostsPage({ slug }) {
-  const [entry, setEntry] = useState([]);
-
-  useEffect(() => {
-    const fetch = async () => {
-      let ref = await db.collection('posts').doc(slug).get();
-      if (ref.exists) { setEntry(ref.data()) }
-    }
-    fetch();
-  }, []);
-
-  const post = entry
-  
-  useEffect(() => {
-    // Prism.highlightAll()
-    // console.log(post)
-    // console.log(post)
-  }, [post]);
-  
+function PostsPage({ post }) {
+  // openLoading('close')
   useEffect(() => {
     openLoading('close');
   }, []);
@@ -95,15 +77,15 @@ function PostsPage({ slug }) {
   } else {
     return (<>
       <HeadMetadata
-        title={entry ? entry?.title : "Get latest update around the world at your finger tip | Cent Blog"}
-        metaDescription={entry ? entry?.excerpt : "Get latest update around the world at your finger tip | Cent Blog"}
+        title={post ? post?.title : "Get latest update around the world at your finger tip | Cent Blog"}
+        metaDescription={post ? post?.excerpt : "Get latest update around the world at your finger tip | Cent Blog"}
       />
 
       <div className="parent">
         <div className="left"></div>
         <div className="middle homepage-container">
 
-          <div className="layout-wrapper">
+          {post?.createdAt && <div className="layout-wrapper">
             <div className="blog-post-container">
               <div>
                 {canEdit && <div className="modBtn">
@@ -142,7 +124,7 @@ function PostsPage({ slug }) {
               </div>
             </div>
           </div>
-
+}
           <Footer />
         </div>
         <div className="right"></div>
@@ -151,65 +133,23 @@ function PostsPage({ slug }) {
   }
 }
 
-
-PostsPage.getInitialProps = ({ query }) => {
-  return {
-    slug: query.slug,
-  }
-}
-
 export default PostsPage
 
-// export const getServerSideProps = async (context) => {
-//   const { slug } = context.params;
-//   // console.log({ slug })
-//   if(slug){
-//     const res = await db.collection("posts").doc(slug).get();
-//     const entry = res?.data();
+export const getServerSideProps = async (context) => {
+  const { slug } = context.params;
+  // console.log({ slug })
+  if(slug){
+    const res = await db.collection("posts").doc(slug).get();
+    const post = res?.data();
 
-//     if (res.exists) {
-//       return {
-//         props: {
-//           entry: entry
-//         }
-//       }
-//     } else {
-//       return {
-//         props: {}
-//       }
-//     }
-//   }
-// }
-
-
-// export const getStaticPaths = async () => {
-//   const entries = await db.collection("posts").get();
-//   const paths = entries.docs.map(entry => ({
-//     params: {
-//       slug: entry?.data().slug
-//     }
-//   }));
-//   return {
-//     paths,
-//     fallback: true
-//   }
-// }
-
-// export const getStaticProps = async (context) => {
-//   const { slug } = context.params;
-//   // console.log({ slug })
-//   const res = await db.collection("posts").doc(slug).get();
-//   const entry = res?.data();
-
-//   if (res.exists) {
-//     return {
-//       props: {
-//         entry: entry
-//       }
-//     }
-//   } else {
-//     return {
-//       props: {}
-//     }
-//   }
-// }
+    if (res.exists) {
+      return {
+        props: { post }
+      }
+    } else {
+      return {
+        props: {}
+      }
+    }
+  }
+}
