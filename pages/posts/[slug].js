@@ -76,7 +76,7 @@ function PostsPage({ post }) {
   } else {
     return (<>
       <HeadMetadata
-        title={post ? post?.title : "Get latest update around the world at your finger tip | Cent Blog"}
+        title={post ? `${post?.title} - Cent Blog` : "Get latest update around the world at your finger tip | Cent Blog"}
         metaDescription={post ? post?.excerpt : "Get latest update around the world at your finger tip | Cent Blog"}
       />
 
